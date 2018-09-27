@@ -1,4 +1,4 @@
-% Interface for training a GP using vanilla SKI with gradients
+% Interface for training a GP using vanilla SKI with gradients using the SE Kernel
 % 
 % [mu, K] = gp_SKI_grad(X, Y, DY)
 % 
@@ -11,8 +11,13 @@
 
 function [mu, K] = gp_SKIP_grad(X, Y, DY)
 
-% Starting point
+
 [ntrain, d] = size(X);
+if(ntrain < 100)
+    error('Not that many training points; we recommend you use the exact kernel instead');
+end
+
+% Starting Points
 ell0 = 0.2*sqrt(d); 
 s0 = std(Y); 
 sig0 = 5e-2*s0;

@@ -1,4 +1,4 @@
-% Simple interface for training a GP using vanilla SKI, not meant for customizability but rather for ease of use
+% Interface for training a GP using vanilla SKI using the SE Kernel
 % 
 % [mu, K] = gp_SKI(X, Y)
 % 
@@ -11,8 +11,12 @@
 
 function [mu, K] = gp_SKI(X, Y)
 
-% Various parameters and initial hyperparameters
 [ntrain, d] = size(X);
+if(ntrain < 100)
+    error('Not that many training points; we recommend you use the exact kernel instead');
+end
+
+% Various parameters and initial hyperparameters
 ell0 = 0.2*sqrt(d);
 s0 = std(Y); 
 beta = 1e-4; 

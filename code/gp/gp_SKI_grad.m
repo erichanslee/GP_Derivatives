@@ -1,4 +1,4 @@
-% Simple interface for training a GP using vanilla SKI, not meant for customizability but rather for ease of use
+% Interface for training a GP using vanilla SKI with gradients using the SE Kernel
 % 
 % [mu, K] = gp_SKI_grad(X, Y, DY)
 % 
@@ -11,8 +11,11 @@
 
 function [mu, K] = gp_SKI_grad(X, Y, DY)
 
-% Various parameters and initial hyperparameters
 [ntrain, d] = size(X);
+if(ntrain < 100)
+    error('Not that many training points; we recommend you use the exact kernel instead');
+end
+% Various parameters and initial hyperparameters
 ell0 = 0.2*sqrt(d); 
 s0 = std(Y); 
 beta = 1e-4; 
@@ -23,7 +26,7 @@ precond = true;
 if d==1, ninduce=100; elseif d==2, ninduce=100; elseif d==3, ninduce=50; ... 
 else error('SKI does not scale well with dimension > 3'); end
 
-% Create interpolation grid
+% Create interpolation grid and weights
 xg = createGrid(X, ninduce);
 [Wtrain{1}, Wtrain{2}] = interpGrid(X, xg, 5);
 
