@@ -26,25 +26,9 @@ str = ['[ ', str(1:end-2), ' ]'];
 fprintf('Variance in each component: %s\n\n', str)
 
 %% (1) Exact with gradients
-ell0 = 0.5*sqrt(d);
-s0 = std(ytrain);
-sig0 = 0.1*s0; % Guessing 10% noise
-beta = 1e-6;
-precond = true;
-
 n = ceil(ntrain/(d+1));
-cov = @(hyp) se_kernel_grad(xtrain(1:n, :), hyp);
-lmlfun = @(x) lml_exact(cov, [ytrain(1:n), dytrain(1:n,:)], x, beta);
-hyp = struct('cov', log([ell0, s0]), 'lik', log([sig0, sig0]));
-params = minimize_quiet(hyp, lmlfun, -50);
-sigma = sqrt(exp(2*params.lik) + beta);
-fprintf('SE with gradients: (ell, s, sigma1, sigma2) = (%.3f, %.3f, %.3f, %.3f)\n', exp(params.cov), sigma)
-
-sigma2 = [sigma(1)*ones(1, n), sigma(2)*ones(1, n*d)];
-K = se_kernel_grad(xtrain(1:n,:), params) + diag(sigma2);
-lambda = K\vec([ytrain(1:n), dytrain(1:n, :)]);
-KK = se_kernel_grad(xtrain(1:n,:), params, xtest);
-ypred_exact_grad = KK*lambda;
+mu = gp_grad(xtrain(1:n,:), ytrain(1:n), dytrain(1:n,:));
+ypred_exact_grad = mu(xtest);
 
 %% (2) SKI with gradients, using an active subspace of dimension 2
 dtilde = 2;
@@ -101,27 +85,27 @@ xQ = xplot * QQ;
 dfxQ = dyplot * QQ;
 xQtest = xtest * QQ;
 
-f1 = figure('units','normalized','outerposition',[0 0 1 1]);
-semilogy(dvar(1:10),'.','MarkerSize',100)
+subplot(2,2,1);
+semilogy(dvar(1:10),'.','MarkerSize',40)
 hold on
-semilogy(dvar(1:10),'LineWidth',6)
-set(gca,'FontSize',80,'xtick',1:10,'xticklabel',1:10,'ytick',[1e-15 1e-10 1e-5 1e0],'yticklabel',[-15,-10,-5,0]);
+semilogy(dvar(1:10),'LineWidth',4)
+set(gca,'FontSize',20,'xtick',1:10,'xticklabel',1:10,'ytick',[1e-15 1e-10 1e-5 1e0],'yticklabel',[-15,-10,-5,0]);
 xlim([0 10]); ylim([1e-17 1000]);
 
-f2 = figure('units','normalized','outerposition',[0 0 1 1]);
-scatter(xQ(:,1),yplot,60,yplot,'filled')
+subplot(2,2,2);
+scatter(xQ(:,1),yplot,20,yplot,'filled')
 colormap jet
 box on
-set(gca,'FontSize',80)
+set(gca,'FontSize',20)
 
-f3 = figure('units','normalized','outerposition',[0 0 1 1]);
-scatter(xQ(:,2),yplot,60,yplot,'filled')
+subplot(2,2,3);
+scatter(xQ(:,2),yplot,20,yplot,'filled')
 colormap jet
 box on
-set(gca,'FontSize',80)
+set(gca,'FontSize',20)
 
-f4 = figure('units','normalized','outerposition',[0 0 1 1]);
-scatter(xQ(:,1),xQ(:,2),60,yplot,'filled')
+subplot(2,2,4);
+scatter(xQ(:,1),xQ(:,2),20,yplot,'filled')
 colormap jet
 box on
-set(gca,'FontSize',80)
+set(gca,'FontSize',20)

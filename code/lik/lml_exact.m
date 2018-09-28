@@ -13,11 +13,6 @@ function [val, dval] = lml_exact(cov, y, hyp, lambda)
 %   val: value of lml
 %   dval: derivative of lml
 
-if ~(isstruct(hyp) )
-    error('Sorry guys, but sending in the hyp as a struct is so much nicer.\n%s',...
-        'Use cov for the kernel hypers and lik for the likelihood hypers //David')
-end
-
 if nargin < 4, lambda = 1e-6; end
 [K, dK] = cov(hyp);
 nd = length(K); % nd = n*(d+1) with gradients, just n otherwise

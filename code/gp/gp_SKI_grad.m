@@ -41,7 +41,7 @@ lmlfun = @(x) lml_mvm(cov, ([Y, DY]), x, Z, beta, precond, S);
 hyp = struct('cov', log([ell0 s0]), 'lik', log([sig0, sig0]));
 
 % Optimize hyperparameters
-params = minimize_quiet(hyp, lmlfun, -100);
+params = minimize_quiet(hyp, lmlfun, -50);
 sigma = sqrt(exp(2*params.lik) + beta);
 fprintf('SE-SKI with gradients: (ell, s, sigma1, sigma2) = (%.3f, %.3f, %.3f, %.3f)\n', exp(params.cov), sigma);
 

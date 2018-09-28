@@ -41,7 +41,7 @@ lmlfun = @(x) lml_mvm(cov, Y, x, Z, beta, precond);
 hyp = struct('cov', log([ell0 s0]), 'lik', log(sig0));
 
 % Optimize hyperparameters
-params = minimize_quiet(hyp, lmlfun, -100);
+params = minimize_quiet(hyp, lmlfun, -50);
 sigma = sqrt(exp(2*params.lik) + beta);
 fprintf('SKI no gradients: (ell, s, sigma) = (%.3f, %.3f, %.3f)\n', exp(params.cov), sigma);
 

@@ -19,16 +19,6 @@ function [val, dval] = lml_mvm(cov, y, hyp, Z, lambda, precond, S)
 %   dval: derivative of lml
 
 nd = numel(y);
-% args = exp([hyp.cov(:); hyp.lik(:)]');
-% fprintf(['(',repmat('%.3f, ', 1, length(args)-1), '%.3f)\n'],args)
-if nargin < 6, error('Guys, I swapped the input arguments, make sure you''re\n%s',...
-        'calling this function correctly'); end
-
-if ~(isstruct(hyp) )
-    error('Sorry guys, but sending in the hyp as a struct is so much nicer.\n%s',...
-        'Use cov for the kernel hypers and lik for the likelihood hypers //David')
-end
-
 if nargin < 7
     S = [];
     if nargin < 6
