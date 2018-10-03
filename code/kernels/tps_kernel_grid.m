@@ -1,10 +1,16 @@
-% X is a cell with a linspace in each dimension
-% Either use {x1, x2, ..., xd} or if the linspaces are the same in each
-% dimension you can use {x, d} instead to avoid forming all kernels
+%% Thin plate spline (TPS) kernel calculated on a grid
 %
-% Returns the mvm with kernel and hypers
+% Input
+% R: Fixed hyperparameter for TPS kernel, selected to guarantee positive definiteness of kernel on some domain
+% X: training points
+% hyp: hyperparameters
 
-function [mvm, dmvm, precond_handle] = tps_kernel_grid(R, X, hyp)
+% 
+% Output
+% mvm: kernel matrix mvm function handle using d-dimensional FFTs
+% dmvm: derivatives of kernel w.r.t. hyperparameters for training
+
+function [mvm, dmvm] = tps_kernel_grid(R, X, hyp)
 
 assert(iscell(X)); d = length(X);
 if d > 3

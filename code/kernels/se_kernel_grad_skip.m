@@ -1,9 +1,21 @@
+% SKIP with SE kernel and gradients. Note that this kernel is used for training only; 
+% with a set of predictive points must be performed using either the exact kernel or a different approximation.
+% Input
+%     x: training points
+%     hyp: hyperparameters
+%     z: initial vector for Lanczos
+%     r: rank of Lanczos decomposition desired
+%     xg: interpolation grid
+%     flag: has value 'exact' to get dense matrix instead of mvm if desired (optional)
+%     diag_correct: digonal correction of lengthscale < 0.4 (optional)
+% Output
+%     mvm: mvm with kernel
+%     dmvm: mvm with kernel hypers
+%     dd: diagonal of kernel
+%     get_row: function handle for getting row k
+
 function [mvm, dmvm, dd, get_row] = se_kernel_grad_skip(x, hyp, z, r, xg, flag, diag_correct)
-% Output arguments:
-%   - mvm: mvm with kernel
-%   - dmvm: mvm with kernel hypers
-%   - dd: diagonal of kernel
-%   - get_row: function for getting row k
+
 
 if nargin < 7
     diag_correct = (exp(hyp.cov(1)) < 0.4); % Diagonal correction if ell < 0.4

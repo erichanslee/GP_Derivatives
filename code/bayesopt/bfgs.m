@@ -1,3 +1,13 @@
+% A wrapper for fmincon with simple upper and lower bounds. 
+% Input
+%     f: function handle returning both values and derivatives
+%     lb: lower bound array
+%     ub: upper bound array
+%     numevals: evaluation budget
+% Output
+%     xbfgs: data points evaluated
+%     ybfgs: function values evaluated
+
 function [xbfgs, ybfgs] = bfgs(f, lb, ub, numevals)
 xbfgs = []; ybfgs = []; d = length(lb);
 

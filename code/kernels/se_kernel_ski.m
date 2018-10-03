@@ -1,7 +1,5 @@
 %% SKI kernel no gradients implementation
 %
-% [K, dKhyp, dd, get_row] = se_kernel_ski(X, hyp , xg, WX, XX, WXX)
-%
 % Input
 % X: training points
 % hyp: hyperparameters

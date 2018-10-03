@@ -1,3 +1,5 @@
+% Taken from GPML: http://www.gaussianprocess.org/gpml/code/matlab/doc/
+
 function [X, fX, i] = minimize(X, f, length, varargin)
 
 % Minimize a differentiable multivariate function using conjugate gradients.

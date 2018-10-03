@@ -1,4 +1,3 @@
-function [val, dval] = lml_exact(cov, y, hyp, lambda)
 % LML_EXACT  Exact log marginal likelihood and derivatives function
 % [val, dval] = lml_mvm(cov, y, hyp, Z, precond)
 %
@@ -12,6 +11,9 @@ function [val, dval] = lml_exact(cov, y, hyp, lambda)
 % Output:
 %   val: value of lml
 %   dval: derivative of lml
+
+function [val, dval] = lml_exact(cov, y, hyp, lambda)
+
 
 if nargin < 4, lambda = 1e-6; end
 [K, dK] = cov(hyp);

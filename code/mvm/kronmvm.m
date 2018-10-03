@@ -1,5 +1,11 @@
-% Perform a matrix vector multiplication b = A*x with a matrix A being a
-% Kronecker product given by A = kron( kron(...,As{2}), As{1} ).
+% Computes kronecker product-vector multiplication (A{1} \kron A{2} \kron ... \kron A{n})*x
+% Input
+%     As: cell of matrices for kronecker product
+%     x: target vector for multiplication
+%     transp: flag to perform mvm with tranposed matrix (optional)
+% Output
+%     Y: product (A{1} \kron A{2} \kron ... \kron A{n})*xfunction b = kronmvm(As,x,transp)
+
 function b = kronmvm(As,x,transp)
 if nargin>2 && ~isempty(transp) && transp   % transposition by transposing parts
   for i=1:numel(As)

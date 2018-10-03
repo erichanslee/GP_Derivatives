@@ -1,18 +1,16 @@
-%   [L, P] = piv_cholSEgrad(X, params, tol, rr) returns an upper triangular matrix R and a
+%   [L, P] =pchol_handles(rowhandle, dd, tol, rr) returns an upper triangular matrix R and a
 %   permutation matrix P such that L*L' = P'*A*P.
 %
 %   Arguments
-%       X: Data matrix of size n x d
-%       params: length, scaling, and noise in a struct
+%       rowhandle: handle providing row of matrix
+%       dd: diagonal of matrix
 %       tol: a lower bound on diagonal elements of L
 %       rr: maximum truncation rank rr
-%       K1: Optional Kernel Matrix (only of function values)
 %
 %   Outputs:
 %       L,P: Matrices fufulling L*L' \approx P'*A*P, with equality if
 %            L is a square n by n matrix
 %
-%   Author: EHL, Cornell University
 
 function [L, pp] = pchol_handles(rowhandle, dd, tol, rr)
 

@@ -1,10 +1,12 @@
+% Computes kronecker product-vector multiplication (A{1} \kron A{2} \kron ... \kron A{n})*x
+% Input
+%     A: cell of matrices for kronecker product
+%     x: target vector for multiplication
+% Output
+%     Y: product (A{1} \kron A{2} \kron ... \kron A{n})*x
+
 function Y = kpmvm(A, x)
-%KPMVM Compute kron(A{1}, ..., A{end})*X in
-%
-% Y = kpmvm(A, X)
-%
-% David Eriksson, Cornell University
-%
+
 
 N = length(A);
 if N == 1

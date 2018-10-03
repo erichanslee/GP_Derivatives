@@ -1,3 +1,12 @@
+% Standard Squared Exponential (SE) kernel
+% Input
+%     X: training points
+%     hyp: hyperparameters
+%     XX: testing points (optional)
+% Output
+%     K: dense kernel matrix
+%     dKhyp: kernel matrix derivatives w.r.t. hyperparameters
+
 function [K, dKhyp] = se_kernel(X, hyp, XX)
 if nargin == 2
     XX = X;

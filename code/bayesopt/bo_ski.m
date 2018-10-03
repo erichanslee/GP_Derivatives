@@ -1,4 +1,13 @@
-% Run BayesOpt using the SKI Kernel and random projections, setting the maximal projection dimension (dmax) to be 2
+% Run BayesOpt using the SKI Kernel and active subspaces, setting the maximal projection dimension (dmax) to be 2
+% and using the expected improvement acqusition function 
+% Input
+%     f: function handle returning both values and derivatives
+%     lb: lower bound array
+%     ub: upper bound array
+%     numevals: evaluation budget
+% Output
+%     xbfgs: data points evaluated
+%     ybfgs: function values evaluated
 
 function [xtrain, ytrain] = bo_ski(f, lb, ub, numevals)
 dmax = 2;

@@ -1,3 +1,13 @@
+% Standard Squared Exponential (SE) kernel with gradients
+% Input
+%     X: training points
+%     hyp: hyperparameters
+%     XX: testing points (optional)
+% Output
+%     K: dense kernel matrix
+%     dKhyp: kernel matrix derivatives w.r.t. hyperparameters
+
+
 function [K, dKhyp] = se_kernel_grad(X, hyp, XX)
 assert(~(nargout == 2 && nargin == 3), 'Prediction + two outputs not compatible')
 

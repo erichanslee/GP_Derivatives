@@ -1,4 +1,3 @@
-function [val, dval] = lml_mvm(cov, y, hyp, Z, lambda, precond, S)
 % LML_MVM  MVM based log marginal likelihood and derivatives function
 % [val, dval] = lml_mvm(cov, y, hyp, Z, precond, lambda)
 %
@@ -17,6 +16,9 @@ function [val, dval] = lml_mvm(cov, y, hyp, Z, lambda, precond, S)
 % Output:
 %   val: value of lml
 %   dval: derivative of lml
+
+function [val, dval] = lml_mvm(cov, y, hyp, Z, lambda, precond, S)
+
 
 nd = numel(y);
 if nargin < 7

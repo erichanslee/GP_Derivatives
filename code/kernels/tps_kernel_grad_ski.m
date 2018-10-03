@@ -1,3 +1,20 @@
+%% Thin plate spline (TPS) kernel with gradients and kernel interpolation
+%
+% Input
+% R: Fixed hyperparameter for TPS kernel, selected to guarantee positive definiteness of kernel on some domain
+% X: training points
+% hyp: hyperparameters
+% xg: grid points for interpolation
+% WX: interpolation weights training
+% XX: testing points (optional, needed for prediction)
+% WXX: interpolation weights testing (optional, needed for prediction)
+% 
+% Output
+% K: kernel matrix mvm function handle
+% dKhyp: derivatives of kernel w.r.t. hyperparameters for training
+% dd: diagonal of matrix, necessary for pivoted cholesky preconditioner
+% get_row: function handle outputting row of ski, necessary for pivoted cholesky preconditioner
+
 function [K, dKhyp, dd, get_row] = tps_kernel_grad_ski(R, X, hyp, xg, WX, XX, WXX)
     dd = []; get_row = [];
     

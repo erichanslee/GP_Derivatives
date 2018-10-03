@@ -1,3 +1,13 @@
+% Performs fast TPS kernel mvm on a grid using FFTS in 3 dimensions
+% Input
+%     xx: x grid points
+%     yy: y grid points
+%     zz: z grid points       
+%     R: fixed hyperparameter for TPS kernel a positive definite kernel matrix on fixed domain
+%     u: target vector for multiplacation
+% Output
+%     out: vector that is K*u where K is the TPS kernel matrix on a grid defined by xx and yy
+
 function out = bttb3(xx, yy, zz, R, u)
 xx = xx - xx(1);
 yy = yy - yy(1);

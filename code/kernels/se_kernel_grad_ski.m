@@ -1,3 +1,18 @@
+% Squared Exponential (SE) kernel with gradients and kernel interpolation
+% Input
+%     X: training points
+%     hyp: hyperparameters
+%     xg: points for grid interpolation
+%     WX: training points weight matrix for interpolant (optional)
+%     XX: testing points (optional)
+%     WXX: testing poitns weight matrix for interpolant (optional)
+% Output
+%     K: dense kernel matrix
+%     dKhyp: kernel matrix derivatives w.r.t. hyperparameters
+%     dd: diagonal of kernel matrix, used for preconditioners
+%     get_row: function handle outputting a desired row of kernel matrix, used for preconditioners
+
+
 function [K, dKhyp, dd, get_row] = se_kernel_grad_ski(X, hyp, xg, WX, XX, WXX)
     if nargin < 4,  [WX{1}, WX{2}] = interpGrid(X, xg, 5);  end
     MX = [WX{1}; WX{2}];

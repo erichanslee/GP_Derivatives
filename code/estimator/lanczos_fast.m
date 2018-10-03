@@ -1,3 +1,11 @@
+% Run lanczos without reorthogonalization, which is faster but less stable
+% Input
+%     Afun: mvm function handle
+%     z: random initial vector
+%     kmax: rank of Lanczos
+% Output
+%     Q, T such that A = Q'*A*Q
+
 function [Q,T] = lanczos_fast(Afun, z, kmax)
     if nargin < 3, kmax = 150; end
     % initialization

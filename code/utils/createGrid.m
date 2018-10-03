@@ -1,4 +1,5 @@
 % Taken from GPML: http://www.gaussianprocess.org/gpml/code/matlab/doc/
+% to greate uniform interpolation grid from training points x
 
 function xg = createGrid(x, k)
   if nargin<2, k = 1; end                                     % set input params

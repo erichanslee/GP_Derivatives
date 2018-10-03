@@ -1,3 +1,14 @@
+% SKIP is a kernel used for training only. Once training is performed and hyperparameters/interpolation coefficients are calculated, 
+% this function allows one to perform prediction via SKIP and D-SKIP
+% Input
+%     xtrain: training points
+%     hyp: hyperparamters
+%     xg: grid points
+%     xtest: prediction points
+%     lambda: interpolation coefficients
+% Output
+%     ypred: predicted values at xtest
+
 function ypred = predict_skip(xtrain, hyp, xg, xtest, lambda)
 ntrain = size(xtrain, 1);
 ntest = size(xtest, 1);

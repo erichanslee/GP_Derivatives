@@ -1,3 +1,18 @@
+% SKIP with SE kernel. Note that this kernel is used for training only; 
+% with a set of predictive points must be performed using either the exact kernel or a different approximation.
+% Input
+%     x: training points
+%     hyp: hyperparameters
+%     z: initial vector for Lanczos
+%     r: rank of Lanczos decomposition desired
+%     xg: interpolation grid
+%     flag: has value 'exact' to get dense matrix instead of mvm if desired (optional)
+% Output
+%     mvm: mvm with kernel
+%     dmvm: mvm with kernel hypers
+%     dd: diagonal of kernel
+%     get_row: function handle for getting row k
+
 function [mvm, dmvm, dd, get_row] = se_kernel_skip(x, hyp, z, r, xg, flag)
 
 % Return a fast MVM to the product kernel with given mvms

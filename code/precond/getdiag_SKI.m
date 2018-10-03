@@ -1,5 +1,13 @@
-% getdiag_SKI pulls out diag(W*Kg*W')
-% Mx can be W or [W;dW]
+% getdiag_SKI pulls out diag(W*Kg*W') for pivoted Cholesky. Calls
+% a c function ski_diag.c which must be mexed. 
+% Input
+%     hyp: hyperparameters
+%     xg: interpolation grid
+%     Mx: interpolation weights
+%     deg: degree of interpolation (assumed to be 5)
+% Output
+%     dd: diagonal of SKI matrix
+
 function dd = getdiag_SKI(hyp, xg, Mx, deg)
     if nargin < 4, deg = 5; end % assume quintic interpolation
     KgVec = [];

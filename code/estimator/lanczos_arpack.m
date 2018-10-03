@@ -1,3 +1,12 @@
+% Arpack Lanczos wrapper
+% Input
+%     B: mvm function handle
+%     v: random initial vector
+%     d: rank of Lanczos
+%     eps: tolerance
+% Output
+%     Q, T such that A = Q'*A*Q
+    
 function [Q,T] = lanczos_arpack(B, v, d, eps)     % perform Lanczos with at most d MVMs
   if nargin<4, eps = 1e-10; end
   n = length(v);

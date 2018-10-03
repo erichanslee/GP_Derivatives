@@ -1,9 +1,9 @@
-function [alpha, numiters] = solve_scaled_system(K, S, Sigma2, f, P, tol, maxiter)
 % Solves the linear system of equations (K + Sigma2)x = f
-%   by transforming it to (S*K*S + S*Sigma2*S)y = S*f, where y = inv(S)*y
-%
-%   This function is designed purely for solving systems of eqns with the
-%   SE kernel
+% Scaling is important because the noise parameters on the kernel and its hessian
+% have different units, so we perform the (S*K*S + S*Sigma2*S)y = S*f, where y = inv(S)*y
+% to make things unitless. This function is designed purely for the SE kernel
+
+function [alpha, numiters] = solve_scaled_system(K, S, Sigma2, f, P, tol, maxiter)
 
 if nargin < 7
     maxiter = 500;

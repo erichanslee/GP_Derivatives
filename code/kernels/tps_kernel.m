@@ -1,3 +1,13 @@
+% Standard thin plate spline (TPS) kernel
+% Input
+%     R: Fixed hyperparameter for TPS kernel, selected to guarantee positive definiteness of kernel on some domain
+%     X: training points
+%     hyp: hyperparameters
+%     XX: testing points (optional)
+% Output
+%     K: dense kernel matrix
+%     dKhyp: kernel matrix derivatives w.r.t. hyperparameters
+
 function [K, dKhyp] = tps_kernel(R, X, hyp, XX)
 if nargin == 3
     XX = X;

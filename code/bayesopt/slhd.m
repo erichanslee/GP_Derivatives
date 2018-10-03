@@ -1,12 +1,14 @@
-function InitialPoints = slhd(d,m)
-% SLHD creates a symmetric Latin hypercube design. 
-
+% Creates a symmetric Latin hypercube design. 
+% 
 %Input:
-%d - dimension of the problem
-%m - number of initial points 
+%   d: dimension of the problem
+%   m: number of initial points 
 %
 %Output:
-%InitialPoints - points in the starting design
+%   InitialPoints: points in the starting design
+
+function InitialPoints = slhd(d,m)
+
 %--------------------------------------------------------------------------
 
 delta = (1/m)*ones(1,d);
@@ -46,4 +48,4 @@ for j = 1:d
     end
 end
 
-end%function
+end

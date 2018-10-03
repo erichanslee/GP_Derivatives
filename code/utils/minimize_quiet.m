@@ -1,3 +1,6 @@
+% minimize_quiet.m differs from minimize.m in that the former does not print any 
+% status updates while the latter does
+
 function [X, fX, i] = minimize_quiet(X, f, length, varargin)
 
 % Minimize a differentiable multivariate function using conjugate gradients.

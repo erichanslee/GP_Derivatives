@@ -1,4 +1,12 @@
 % Calculates W and dW, the interpolation weights and derivatives, for SKI and SKI_grad
+% Input
+%     x: training points
+%     xg: grid points
+%     deg: degree of interpolant (default is 5)
+% Output
+%     W: interpolation weights
+%     dW: derivative of interpolation weights
+    
 function [W, dW] = interpGrid(x, xg, deg)
 
     if nargin < 3,  deg = 5;    end

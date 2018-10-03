@@ -1,6 +1,6 @@
 % [ldB, dldB] = logdet_lanczos(B, n, nZ, dB, kmax, orth)
 %
-% Compute an approximation of logdet and its derivative through Lanczos
+% Approximate the logdet and its derivative of a kernel matrix through Lanczos
 % iteration
 %
 % Input:

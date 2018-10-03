@@ -1,3 +1,14 @@
+% A standard bayesian optimization routine fitting using SE kernel with gradients and 
+% picking points with the expected improvement acquisition function
+% Input
+%     f: function handle returning both values and derivatives
+%     lb: lower bound array
+%     ub: upper bound array
+%     numevals: evaluation budget
+% Output
+%     xtrain: data points evaluated
+%     ytrain: function values evaluated
+
 function [xtrain, ytrain] = bo_exact(f, lb, ub, numevals)
 d = length(lb);
 
