@@ -1,5 +1,5 @@
 # Introduction
-This repository contains code necessary to not only reproduce the experiments presented in [], but also for any
+This repository contains code necessary to not only reproduce the experiments presented in [Scalable Gaussian Process Regression with Derivatives @ NIPS 2018](https://arxiv.org/abs/1810.12283), but also for any
 wishing to use our methods.
 
 Directory Structure: our root directory contains the `code/` and `demos/` folders, which contain the research code written for
