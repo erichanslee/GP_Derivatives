@@ -24,12 +24,12 @@ lmlfun = @(x) lml_exact(cov,Y, x, beta);
 hyp = struct('cov', log([ell0, s0]), 'lik', log([sig0]));
 params = minimize_quiet(hyp, lmlfun, -50);
 sigma = sqrt(exp(2*params.lik) + beta);
-fprintf('SE with gradients: (ell, s, sigma1, sigma2) = (%.3f, %.3f, %.3f, %.3f)\n', exp(params.cov), sigma)
+fprintf('SE with gradients: (ell, s, sigma1) = (%.3f, %.3f, %.3f)\n', exp(params.cov), sigma)
 
 % Calculate interpolation coefficients
 sigma2 = sigma^2*ones(1, ntrain);
 K = se_kernel(X, params) + diag(sigma2);
-lambda = K\vec([Y, DY]);
+lambda = K\Y;
 
 % Function handle returning GP mean to be output
 mu = @(XX) mean(XX, X, lambda, params);
